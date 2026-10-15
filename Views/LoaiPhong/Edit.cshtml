@@ -1,0 +1,14 @@
+@* Họ và tên: [Họ tên Sinh viên 1]
+   Mã sinh viên: [MSSV 1]
+   Nội dung thực hiện: Module 1 - Tài khoản, đăng nhập, phân quyền, quản lý loại phòng *@
+@model LoaiPhong
+@{ ViewData["Title"] = "Sửa loại phòng"; }
+<h3 class="mb-3">Sửa loại phòng</h3>
+<div class="card"><div class="card-body">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="MaLoaiPhong" />
+        <partial name="_Form" model="Model" />
+        <div class="mt-3"><button class="btn btn-primary" type="submit">Cập nhật</button> <a class="btn btn-outline-secondary" asp-action="Index">Quay lại</a></div>
+    </form>
+</div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

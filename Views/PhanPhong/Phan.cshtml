@@ -1,0 +1,59 @@
+@* Họ và tên: [Họ tên Sinh viên 4]
+   Mã sinh viên: [MSSV 4]
+   Nội dung thực hiện: Module 4 - Phân phòng, chuyển phòng, trả phòng, Dashboard, thống kê *@
+@model PhanPhongViewModel
+@{ ViewData["Title"] = "Phân phòng"; }
+<h3 class="mb-3">Phân phòng cho đăng ký #@Model.MaDangKy</h3>
+<div class="row g-3">
+    <div class="col-lg-4"><div class="card h-100"><div class="card-body">
+        <h5>Thông tin sinh viên</h5>
+        <dl class="row mb-0">
+            <dt class="col-5">Mã SV</dt><dd class="col-7">@Model.MaSinhVien</dd>
+            <dt class="col-5">Họ tên</dt><dd class="col-7">@Model.HoTen</dd>
+            <dt class="col-5">Giới tính</dt><dd class="col-7">@Model.GioiTinh</dd>
+            <dt class="col-5">Nguyện vọng</dt><dd class="col-7">@(Model.NguyenVong ?? "-")</dd>
+            <dt class="col-5">Bắt đầu</dt><dd class="col-7">@Model.NgayBatDau.ToString("dd/MM/yyyy")</dd>
+            <dt class="col-5">Kết thúc DK</dt><dd class="col-7">@Model.NgayKetThucDuKien.ToString("dd/MM/yyyy")</dd>
+        </dl>
+    </div></div></div>
+    <div class="col-lg-8"><div class="card h-100"><div class="card-body">
+        <h5>Chọn phòng</h5>
+        <form asp-action="Phan" asp-route-id="@Model.MaDangKy" method="post">
+            <input type="hidden" asp-for="MaDangKy" />
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <div class="row g-3">
+                <div class="col-md-8">
+                    <label asp-for="MaPhong" class="form-label"></label>
+                    <select asp-for="MaPhong" class="form-select">
+                        <option value="0">-- Chọn phòng còn chỗ --</option>
+                        @foreach (var p in Model.PhongCoTheChon)
+                        {
+                            <option value="@p.MaPhong" selected="@(p.MaPhong == Model.MaPhong)">@p.NhanChon</option>
+                        }
+                    </select>
+                    <span asp-validation-for="MaPhong" class="text-danger"></span>
+                </div>
+                <div class="col-md-4"><label asp-for="NgayVao" class="form-label"></label><input asp-for="NgayVao" type="date" class="form-control" /><span asp-validation-for="NgayVao" class="text-danger"></span></div>
+            </div>
+            <div class="form-text mt-2">Chỉ hiển thị phòng đang sử dụng và còn chỗ. Hệ thống kiểm tra lại sức chứa và giới tính khi xác nhận.</div>
+            <div class="mt-3"><button class="btn btn-success" type="submit">Xác nhận phân phòng</button> <a class="btn btn-outline-secondary" asp-action="ChoDuyet">Quay lại</a></div>
+        </form>
+    </div></div></div>
+</div>
+@if (Model.PhongCoTheChon.Count > 0)
+{
+    <h5 class="mt-4">Danh sách phòng có thể lựa chọn</h5>
+    <div class="card"><div class="table-responsive">
+    <table class="table table-sm mb-0">
+        <thead><tr><th>Phòng</th><th>Loại</th><th>Tòa</th><th>Tầng</th><th>Giới tính</th><th>Sức chứa</th><th>Còn chỗ</th></tr></thead>
+        <tbody>
+        @foreach (var p in Model.PhongCoTheChon)
+        {
+            <tr class="@(p.GioiTinhPhong == Model.GioiTinh ? "" : "text-muted")">
+                <td>@p.TenPhong</td><td>@p.TenLoaiPhong</td><td>@p.ToaNha</td><td>@p.Tang</td><td>@p.GioiTinhPhong</td><td>@p.SucChua</td><td>@p.SoChoCon</td>
+            </tr>
+        }
+        </tbody>
+    </table></div></div>
+}
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

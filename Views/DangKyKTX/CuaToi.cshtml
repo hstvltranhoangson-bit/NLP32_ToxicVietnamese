@@ -1,0 +1,14 @@
+@* Họ và tên: [Họ tên Sinh viên 3]
+   Mã sinh viên: [MSSV 3]
+   Nội dung thực hiện: Module 3 - Quản lý sinh viên, đăng ký ở KTX, xem thông tin/lịch sử ở *@
+@model SinhVienCaNhanViewModel
+@{ ViewData["Title"] = "Đăng ký của tôi"; }
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">Đăng ký của tôi</h3>
+    <a class="btn btn-primary" asp-action="Create">+ Đăng ký mới</a>
+</div>
+<partial name="_BangDangKy" model="Model.DanhSachDangKy" />
+@if (Model.PhongHienTai?.Phong != null)
+{
+    <div class="alert alert-success mt-3">Bạn đang ở phòng <strong>@Model.PhongHienTai.Phong.TenPhong</strong> (@Model.PhongHienTai.Phong.ToaNha, tầng @Model.PhongHienTai.Phong.Tang) từ ngày @Model.PhongHienTai.NgayVao.ToString("dd/MM/yyyy").</div>
+}

@@ -1,0 +1,22 @@
+@* Họ và tên: [Họ tên Sinh viên 3]
+   Mã sinh viên: [MSSV 3]
+   Nội dung thực hiện: Module 3 - Quản lý sinh viên, đăng ký ở KTX, xem thông tin/lịch sử ở *@
+@model DangKyKTX
+@{ ViewData["Title"] = "Chi tiết đăng ký"; }
+<h3 class="mb-3">Đăng ký #@Model.MaDangKy</h3>
+<div class="card mb-3"><div class="card-body">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Sinh viên</dt><dd class="col-sm-9">@Model.SinhVien?.HoTen (@Model.MaSinhVien)</dd>
+        <dt class="col-sm-3">Ngày đăng ký</dt><dd class="col-sm-9">@Model.NgayDangKy.ToString("dd/MM/yyyy")</dd>
+        <dt class="col-sm-3">Thời gian ở dự kiến</dt><dd class="col-sm-9">@Model.NgayBatDau.ToString("dd/MM/yyyy") → @Model.NgayKetThucDuKien.ToString("dd/MM/yyyy")</dd>
+        <dt class="col-sm-3">Nguyện vọng loại phòng</dt><dd class="col-sm-9">@(Model.LoaiPhongNguyenVong?.TenLoaiPhong ?? "-")</dd>
+        <dt class="col-sm-3">Ghi chú</dt><dd class="col-sm-9">@Model.GhiChu</dd>
+        <dt class="col-sm-3">Trạng thái</dt><dd class="col-sm-9"><span class="badge @HienThiHelper.LopBadge(Model.TrangThai)">@Model.TrangThai</span></dd>
+    </dl>
+</div></div>
+@if (Model.PhanPhongs.Any())
+{
+    <h5>Lịch sử phân phòng của đăng ký</h5>
+    <partial name="~/Views/SinhVien/_BangLichSu.cshtml" model="Model.PhanPhongs.OrderByDescending(p => p.NgayVao).ToList()" />
+}
+<a class="btn btn-outline-secondary mt-3" href="javascript:history.back()">Quay lại</a>

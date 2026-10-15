@@ -1,0 +1,13 @@
+@* Họ và tên: [Họ tên Sinh viên 3]
+   Mã sinh viên: [MSSV 3]
+   Nội dung thực hiện: Module 3 - Quản lý sinh viên, đăng ký ở KTX, xem thông tin/lịch sử ở *@
+@model SinhVienFormViewModel
+@{ ViewData["Title"] = "Thêm sinh viên"; }
+<h3 class="mb-3">Thêm sinh viên (kèm tài khoản đăng nhập)</h3>
+<div class="card"><div class="card-body">
+    <form asp-action="Create" method="post">
+        <partial name="_Form" model="Model" />
+        <div class="mt-3"><button class="btn btn-primary" type="submit">Lưu</button> <a class="btn btn-outline-secondary" asp-action="Index">Quay lại</a></div>
+    </form>
+</div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

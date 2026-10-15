@@ -1,0 +1,27 @@
+@* Họ và tên: [Họ tên Sinh viên 4]
+   Mã sinh viên: [MSSV 4]
+   Nội dung thực hiện: Module 4 - Phân phòng, chuyển phòng, trả phòng, Dashboard, thống kê *@
+@model TraPhongViewModel
+@{ ViewData["Title"] = "Trả phòng"; }
+<h3 class="mb-3">Trả phòng - @Model.HoTen</h3>
+<div class="card"><div class="card-body">
+    <dl class="row">
+        <dt class="col-sm-3">Sinh viên</dt><dd class="col-sm-9">@Model.HoTen (@Model.MaSinhVien)</dd>
+        <dt class="col-sm-3">Phòng</dt><dd class="col-sm-9">@Model.TenPhong (vào ngày @Model.NgayVao.ToString("dd/MM/yyyy"))</dd>
+    </dl>
+    @if (Model.TrangThaiHienTai != TrangThaiPhanPhong.DangO)
+    {
+        <div class="alert alert-warning">Sinh viên không còn ở phòng này (trạng thái: @Model.TrangThaiHienTai). Không thể trả phòng lần nữa.</div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Quay lại</a>
+    }
+    else
+    {
+    <form asp-action="Tra" asp-route-id="@Model.MaPhanPhong" method="post">
+        <input type="hidden" asp-for="MaPhanPhong" />
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <div class="row"><div class="col-md-4"><label asp-for="NgayRa" class="form-label"></label><input asp-for="NgayRa" type="date" class="form-control" /><span asp-validation-for="NgayRa" class="text-danger"></span></div></div>
+        <div class="mt-3"><button class="btn btn-danger" type="submit">Xác nhận trả phòng</button> <a class="btn btn-outline-secondary" asp-action="Index">Hủy</a></div>
+    </form>
+    }
+</div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

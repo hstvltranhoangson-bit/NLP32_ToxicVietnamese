@@ -1,0 +1,6 @@
+body { background: #f4f6fa; }
+.card { border: 0; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.stat-card .display-6 { font-weight: 700; }
+.table thead th { background: #e9eef7; white-space: nowrap; }
+.progress-sm { height: 8px; min-width: 80px; }
+.field-validation-error, .text-danger { font-size: .875rem; }

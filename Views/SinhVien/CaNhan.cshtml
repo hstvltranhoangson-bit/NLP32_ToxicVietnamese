@@ -1,0 +1,8 @@
+@* Họ và tên: [Họ tên Sinh viên 3]
+   Mã sinh viên: [MSSV 3]
+   Nội dung thực hiện: Module 3 - Quản lý sinh viên, đăng ký ở KTX, xem thông tin/lịch sử ở *@
+@model SinhVienCaNhanViewModel
+@{ ViewData["Title"] = "Thông tin cá nhân"; }
+<h3 class="mb-3">Thông tin cá nhân</h3>
+<partial name="_ThongTinCaNhan" model="Model" />
+<div class="mt-3"><a class="btn btn-outline-primary" asp-action="LichSu">Xem lịch sử ở KTX</a> <a class="btn btn-outline-secondary" asp-controller="TaiKhoan" asp-action="DoiMatKhau">Đổi mật khẩu</a></div>

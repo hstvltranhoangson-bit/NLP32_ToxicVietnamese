@@ -1,0 +1,33 @@
+@* Họ và tên: [Họ tên Sinh viên 4]
+   Mã sinh viên: [MSSV 4]
+   Nội dung thực hiện: Module 4 - Phân phòng, chuyển phòng, trả phòng, Dashboard, thống kê *@
+@model QuanLyKyTucXa_UNETI_DHTI17A2ND.Helpers.PagedList<PhanPhong>
+@{ ViewData["Title"] = "Sinh viên đang ở"; var loc = (LocDanhSachViewModel)ViewBag.Loc; }
+<h3 class="mb-3">Sinh viên đang ở KTX</h3>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-5"><input name="TuKhoa" value="@loc.TuKhoa" class="form-control" placeholder="Mã SV, họ tên hoặc tên phòng..." /></div>
+    <div class="col-auto"><button class="btn btn-primary">Tìm</button> <a class="btn btn-outline-secondary" asp-action="Index">Xóa lọc</a></div>
+</form>
+@if (!Model.Items.Any()) { <div class="alert alert-info">Không có sinh viên nào đang ở phù hợp.</div> }
+else
+{
+<div class="card"><div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead><tr><th>Phòng</th><th>Tòa/Tầng</th><th>Sinh viên</th><th>Ngày vào</th><th>Dự kiến ra</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var p in Model.Items)
+    {
+        <tr>
+            <td class="fw-semibold">@p.Phong?.TenPhong</td><td>@p.Phong?.ToaNha - T@(p.Phong?.Tang)</td>
+            <td>@p.DangKy?.SinhVien?.HoTen <small class="text-muted">(@p.DangKy?.MaSinhVien)</small></td>
+            <td>@p.NgayVao.ToString("dd/MM/yyyy")</td><td>@p.DangKy?.NgayKetThucDuKien.ToString("dd/MM/yyyy")</td>
+            <td class="text-end text-nowrap">
+                <a class="btn btn-sm btn-outline-primary" asp-action="Chuyen" asp-route-id="@p.MaPhanPhong">Chuyển phòng</a>
+                <a class="btn btn-sm btn-outline-danger" asp-action="Tra" asp-route-id="@p.MaPhanPhong">Trả phòng</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table></div></div>
+}
+<div class="mt-3"><partial name="_PhanTrang" model="(PhanTrangViewModel)ViewBag.PhanTrang" /></div>

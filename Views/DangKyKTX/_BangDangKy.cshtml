@@ -1,0 +1,31 @@
+@* Họ và tên: [Họ tên Sinh viên 3]
+   Mã sinh viên: [MSSV 3]
+   Nội dung thực hiện: Module 3 - Quản lý sinh viên, đăng ký ở KTX, xem thông tin/lịch sử ở *@
+@model List<DangKyKTX>
+@if (Model.Count == 0) { <div class="alert alert-info">Chưa có đăng ký nào.</div> }
+else
+{
+<div class="card"><div class="table-responsive">
+<table class="table table-sm align-middle mb-0">
+    <thead><tr><th>Mã</th><th>Ngày đăng ký</th><th>Bắt đầu</th><th>Kết thúc dự kiến</th><th>Nguyện vọng</th><th>Trạng thái</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>#@d.MaDangKy</td><td>@d.NgayDangKy.ToString("dd/MM/yyyy")</td><td>@d.NgayBatDau.ToString("dd/MM/yyyy")</td><td>@d.NgayKetThucDuKien.ToString("dd/MM/yyyy")</td>
+            <td>@(d.LoaiPhongNguyenVong?.TenLoaiPhong ?? "-")</td>
+            <td><span class="badge @HienThiHelper.LopBadge(d.TrangThai)">@d.TrangThai</span></td>
+            <td class="text-end text-nowrap">
+                <a class="btn btn-sm btn-outline-secondary" asp-controller="DangKyKTX" asp-action="Details" asp-route-id="@d.MaDangKy">Chi tiết</a>
+                @if (d.TrangThai == TrangThaiDangKy.ChoDuyet)
+                {
+                    <form asp-controller="DangKyKTX" asp-action="Huy" asp-route-id="@d.MaDangKy" method="post" class="d-inline" onsubmit="return confirm('Hủy đăng ký này?');">
+                        <button class="btn btn-sm btn-outline-danger" type="submit">Hủy</button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table></div></div>
+}
