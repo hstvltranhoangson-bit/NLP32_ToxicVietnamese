@@ -1,7 +1,7 @@
 # Hệ thống quản lý ký túc xá và phân phòng sinh viên (ASP.NET Core 10 MVC)
 
 Solution: `De_tai_XÂY DỰNG HỆ THỐNG QUẢN LÝ KÝ TÚC XÁ VÀ PHÂN PHÒNG SINH VIÊN.sln`
-Project : `QuanLyKyTucXa_UNETI_DHTI17A2ND` (đổi số nhóm/mã lớp cho đúng quy định nếu khác nhóm 11 - lớp TI17A1HN).
+Project : `QuanLyKyTucXa_UNETI_DHTI17A2ND` 
 
 ## Yêu cầu
 - .NET 10 SDK, SQL Server (hoặc LocalDB đi kèm Visual Studio)
