@@ -1,0 +1,17 @@
+.venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+!.env.example
+.vs/
+.vscode/
+*.user
+*.suo
+*.log
+data/raw/
+data/processed/
+artifacts/
+checkpoints/

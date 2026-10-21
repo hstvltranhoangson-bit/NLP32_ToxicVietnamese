@@ -1,0 +1,6 @@
+-r requirements.txt
+# Mô hình PhoBERT: chỉ cài khi cần (nên dùng Python 3.11/3.12, GPU)
+torch>=2.2,<3.0
+transformers>=4.44,<5.0
+underthesea>=6.8
+sentencepiece>=0.2

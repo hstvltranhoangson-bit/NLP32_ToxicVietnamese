@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{47BF6186-5B17-4E56-89BE-194CDFA12931}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>app.py</StartupFile>
+    <SearchPath>$(MSBuildProjectDirectory)</SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <Name>NLP32_ToxicVietnamese</Name>
+    <RootNamespace>NLP32_ToxicVietnamese</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app.py" />
+    <Compile Include="src\__init__.py" />
+    <Compile Include="src\baseline.py" />
+    <Compile Include="src\comparison.py" />
+    <Compile Include="src\config.py" />
+    <Compile Include="src\data_loader.py" />
+    <Compile Include="src\evaluation.py" />
+    <Compile Include="src\main.py" />
+    <Compile Include="src\metrics.py" />
+    <Compile Include="src\phobert.py" />
+    <Compile Include="src\preprocessing.py" />
+    <Compile Include="tests\test_project.py" />
+    <Content Include="notebooks\01_eda.ipynb" />
+    <Content Include="README.md" />
+    <Content Include="requirements.txt" />
+    <Content Include="requirements-phobert.txt" />
+    <Content Include="requirements-dev.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
